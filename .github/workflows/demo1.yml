@@ -9,7 +9,7 @@ on:
       - main  # main
       - 'dev-*'  # dev-test dev-botton-new 
       - 'feat/**' # feat/botton/new
-    paths-ignore:
+    paths:
       - '.github/workflows/*'
 jobs:
   deploy:
