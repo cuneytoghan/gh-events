@@ -23,15 +23,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh -y  # Installs GitHub CLI on the runner
-
       - name: Label the issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}  # Extract issue number
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          gh issue edit $ISSUE_NUMBER --add-label "triage"
+          gh auth login --with-token <<< "${GH_TOKEN}"
+          gh issue edit ${{ env.ISSUE_NUMBER }} --add-label "triage"
   deploy:
     runs-on: ubuntu-latest
     steps:
