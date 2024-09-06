@@ -28,7 +28,7 @@ jobs:
 
       - name: Label the issue
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}  # Extract issue number
         run: |
           gh issue edit $ISSUE_NUMBER --add-label "triage"
